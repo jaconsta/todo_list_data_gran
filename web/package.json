@@ -1,0 +1,39 @@
+{
+  "name": "todo_list_data_gran",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Data dran Q2.",
+  "scrips": {
+    "server": "gulp default",
+    "build": "gulp build"
+  },
+  "author": "Javier Constain <constainopia@gmail.com>",
+  "licence": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.12.2",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "browserify": "^13.1.1",
+    "coffeeify": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "rimraf": "^2.5.4",
+    "run-sequence": "^1.2.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^6.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaconsta/todo_list_data_gran.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaconsta/todo_list_data_gran/issues",
+    "email": "constainopia@gmail.com"
+  }
+}

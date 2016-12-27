@@ -30,9 +30,11 @@ Build a web application that has the following functions:
 
 Run with
 
-´´´
+```sh
 python run.py
-´´´
+```sh
+
+It runs on port 8080
 
 Allowed endpoints:
 
@@ -41,3 +43,22 @@ Allowed endpoints:
 * '/login' : POST
 * '/todo/<string:id>' : GET, PUT
 * '/todo' : GET, POST
+
+## Web interface
+
+Requirements
+
+Install gulp and dependencies.
+
+```sh
+npm install -g gulp-cli
+npm install 
+```sh
+
+Run the testing server.
+
+```sh
+gulp server
+```sh
+
+It runs on port 8080
