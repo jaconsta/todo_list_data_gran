@@ -15,4 +15,3 @@ class User(db.Document):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-#https://runningcodes.net/flask-login-and-mongodb/

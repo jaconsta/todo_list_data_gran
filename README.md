@@ -32,7 +32,7 @@ Run with
 
 ```sh
 python run.py
-```sh
+```
 
 It runs on port 8080
 
@@ -53,12 +53,12 @@ Install gulp and dependencies.
 ```sh
 npm install -g gulp-cli
 npm install 
-```sh
+```
 
 Run the testing server.
 
 ```sh
 gulp server
-```sh
+```
 
-It runs on port 8080
+It runs on port 8000

@@ -12,10 +12,41 @@
     <!--Header-->
     <h1>These are your ToDo's</h1>
 
-    <!--{{> body}}-->
-    <div class="container-fluid">
-          <div class="row" id="reduxroot"></div>
-    </div>
+    <!-- Login -->
+    <section id="loginForm">
+      <h2> Login </h2>
+      <form action="#" method="POST">
+        <label for="email">email</label>
+          <input type="email" name="email" id="login_email" required autofocus />
+        <label for="password">password</label>
+          <input type="password" name="password" id="login_password" required autofocus />
+        <input type="submit" id="login_submit" value="Login" />
+      </form>
+    </section>
+
+    <!-- User registering -->
+    <section id="loginForm">
+      <h2> Register</h2>
+      <form action="#" method="POST">
+        <label for="email">email</label>
+          <input type="email" name="email" id="register_email" required autofocus />
+        <label for="password">password</label>
+          <input type="password" name="password" id="register_password" required autofocus />
+        <input type="submit" id="register_submit" value="Submit" />
+      </form>
+    </section>
+
+    <section id="todos">
+      <section id="newTodo">
+        <h2>New ToDo</h2>
+        <form action="#" method="POST">
+        <label for="description">Description</label>
+          <input type="text" name="description" id="new_todo_description" required autofocus />
+        <input type="submit" id="login_submit" value="Add New To-Do" />
+      </form>
+      </section>
+      <section id="todoList"></section>
+    </section>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/app.js"></script>
