@@ -1,15 +1,17 @@
 from http import HTTPStatus
 
-from flask import request
-from flask_restful import Resource
+import jwt
+from flask import request, jsonify
+from flask.views import MethodView
+from mongoengine import NotUniqueError
 
 from .models import User
 from .serializers import UserSchema, LoginSchema
 
-TODOS= [{'name': "todo1"}, {'name': "todo2"}]
+TODOS = [{'name': "todo1"}, {'name': "todo2"}]
 
 
-class UserView(Resource):
+class UserApiView(MethodView):
     """
     Manage todo's based on their _id.
     """
@@ -25,7 +27,7 @@ class UserView(Resource):
         return UserSchema().dump(user)
 
 
-class UsersView(Resource):
+class UserApiListView(MethodView):
     """
     Manage the creation and listing of users.
     """
@@ -35,25 +37,30 @@ class UsersView(Resource):
         Not implemented due to access rights.
 
         :return: (List) Users.
+        ---
         """
-        return {'message': 'Not implemented'}, HTTPStatus.NOT_IMPLEMENTED
+        return jsonify({'message': 'Not implemented'}), HTTPStatus.NOT_IMPLEMENTED
 
     def post(self):
         """
         Create a new user.
 
         :return: User object.
+        ---
         """
         user_data, errors = UserSchema().load(request.json)
         if errors:
-            return errors
+            return jsonify(errors)
         user_data.hash_password()
-        user_data.save()
+        try:
+            user_data.save()
+        except NotUniqueError as e:
+            return jsonify({'message': ['User already exists.']}), HTTPStatus.BAD_REQUEST
 
-        return UserSchema().dump(user_data)
+        return jsonify(UserSchema().dump(user_data))
 
 
-class LoginView(Resource):
+class LoginApiView(MethodView):
     """
     Login the user.
     """
@@ -69,4 +76,6 @@ class LoginView(Resource):
         user = User.objects(email=login_data['email']).first()
         if not user or not user.check_password(login_data['password']):
             return {'error': 'Invalid credentials'}, HTTPStatus.BAD_REQUEST
-        return {'token': str(user.pk)}
+
+        token = jwt.encode({'user_id': str(user.pk)}, 'secret', algorithm='HS256').decode('UTF-8')
+        return jsonify({'token': token})  # {'token': str(user.pk)}
