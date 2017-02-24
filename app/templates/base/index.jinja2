@@ -1,0 +1,19 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for("static", filename="css/lib/bootstrap.min.css") }}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="css/lib/bootstrap-theme.min.css") }}">
+
+  <title>To-DO's</title>
+
+</head>
+<body><h1>Helllos</h1>
+
+{% block content %}  {% endblock %}
+<script src="{{ url_for("static", filename="js/lib/jquery-3.1.1.min.js") }}"></script>
+<script src="{{ url_for("static", filename="js/lib/bootstrap.min.js") }}"></script>
+
+{% block javascript %}  {% endblock %}
+</body>
+</html>

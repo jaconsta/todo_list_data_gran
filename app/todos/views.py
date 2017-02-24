@@ -21,6 +21,7 @@ class TodoApiView(MethodView):
             return forbidden()
 
         # TODO: Review functionality
+        print (id, user_id)
         todo = Todo.objects(pk=id, user=user_id).first()
         if not todo:
             return jsonify({'message': 'Todo does not exist or belong to the user.'}), HTTPStatus.BAD_REQUEST

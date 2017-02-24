@@ -69,13 +69,18 @@ class LoginApiView(MethodView):
         Authenticate the user.
         Currently return users _id as access_token, though an access_token is required.
         """
-        login_data, errors = LoginSchema().load(request.json)
+        if not request.json:
+            return jsonify({'errors': ['Data is not JSON']}), HTTPStatus.BAD_GATEWAY
+        try:
+            login_data, errors = LoginSchema().load(request.json)
+        except Exception as e:
+            return jsonify({'errors': [str(e)]}), HTTPStatus.BAD_REQUEST
         if errors:
-            return errors
+            return jsonify(errors), HTTPStatus.BAD_REQUEST
         # Find and validate user credentials.
         user = User.objects(email=login_data['email']).first()
         if not user or not user.check_password(login_data['password']):
-            return {'error': 'Invalid credentials'}, HTTPStatus.BAD_REQUEST
+            return jsonify({'error': 'Invalid credentials'}), HTTPStatus.BAD_REQUEST
 
         token = jwt.encode({'user_id': str(user.pk)}, 'secret', algorithm='HS256').decode('UTF-8')
         return jsonify({'token': token})  # {'token': str(user.pk)}

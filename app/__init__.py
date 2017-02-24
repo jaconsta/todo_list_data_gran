@@ -36,5 +36,8 @@ app.add_url_rule(API_PREFIX+'/login', view_func=LoginApiView.as_view('user_login
 app.add_url_rule(API_PREFIX+'/todo/<string:id>', view_func=TodoApiView.as_view('todo'))
 app.add_url_rule(API_PREFIX+'/todo', view_func=TodoApiListView.as_view('todo_list'))
 
+from app.users.webViews import user_web_blueprint, login_web_blueprint
+app.register_blueprint(user_web_blueprint, url_prefix='/users')
+app.register_blueprint(login_web_blueprint, url_prefix='/login')
 
 

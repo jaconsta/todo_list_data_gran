@@ -1,0 +1,17 @@
+{% extends "base/index.jinja2" %}
+
+{% block content %}
+  <h2>This is you</h2>
+
+  <section id="userInfo">
+  </section>
+
+  <section id="userRegister">
+  </section>
+{% endblock %}
+
+{% block javascript %}
+ <script src="{{ url_for("static", filename="js/users.js") }}"></script>
+
+ {% endblock %}
+
